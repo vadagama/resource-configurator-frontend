@@ -1,13 +1,12 @@
-import React from "react"
-import { Route, Routes } from "react-router-dom"
-import ProfileContainer from "./../Pages/Profile/ProfileContainer"
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<ProfileContainer />} />
+      <Route path='/' />
     </Routes>
-  )
+  );
 }
 
-export default MyRoutes
+export default MyRoutes;
