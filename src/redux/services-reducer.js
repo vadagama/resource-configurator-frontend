@@ -1,44 +1,17 @@
 import { API } from './../api/api';
 
-const GET_SERVICES = 'GET_SERVICES';
+const GET_SERVICE_TYPES = 'GET_SERVICE_TYPES';
+const GET_SERVICES = 'SET_SERVICES';
 
 const initialState = {
+  types: [{ id: null, name: null }],
   services: [
     {
-      databases: [
-        {
-          id: 1,
-          title: 'Oracle database',
-          description: 'Система управления базами данных компании Oracle',
-          image:
-            "src='https://img2.freepng.ru/20180526/usu/kisspng-microsoft-sql-server-sql-server-management-studio-5b0a14557259a0.9917237415273872214684.jpg",
-        },
-        {
-          id: 1,
-          title: 'Oracle database',
-          description: 'Система управления базами данных компании Oracle',
-          image:
-            "src='https://img2.freepng.ru/20180526/usu/kisspng-microsoft-sql-server-sql-server-management-studio-5b0a14557259a0.9917237415273872214684.jpg",
-        },
-      ],
-    },
-    {
-      compute: [
-        {
-          id: 1,
-          title: 'Oracle database',
-          description: 'Система управления базами данных компании Oracle',
-          image:
-            "src='https://img2.freepng.ru/20180526/usu/kisspng-microsoft-sql-server-sql-server-management-studio-5b0a14557259a0.9917237415273872214684.jpg",
-        },
-        {
-          id: 1,
-          title: 'Oracle database',
-          description: 'Система управления базами данных компании Oracle',
-          image:
-            "src='https://img2.freepng.ru/20180526/usu/kisspng-microsoft-sql-server-sql-server-management-studio-5b0a14557259a0.9917237415273872214684.jpg",
-        },
-      ],
+      id: null,
+      type: null,
+      title: null,
+      description: null,
+      image: null,
     },
   ],
 };
@@ -46,18 +19,34 @@ const initialState = {
 const servicesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SERVICES: {
-      return { ...state, ...action.data };
+      return { ...state, services: action.payload.data };
+    }
+    case GET_SERVICE_TYPES: {
+      return { ...state, types: action.payload.data };
     }
     default:
       return state;
   }
 };
 
+const getServicesAC = (payload) => ({ type: GET_SERVICES, payload });
+const getServiceTypesAC = (payload) => ({ type: GET_SERVICE_TYPES, payload });
+
 export const getServices = () => {
   return (dispatch) => {
-    API.getUsers.then((data) => {
+    API.getServices().then((data) => {
       if (data) {
-        dispatch(servicesReducer(data.items));
+        dispatch(getServicesAC(data));
+      }
+    });
+  };
+};
+
+export const getServiceTypes = () => {
+  return (dispatch) => {
+    API.getServiceTypes().then((data) => {
+      if (data) {
+        dispatch(getServiceTypesAC(data));
       }
     });
   };

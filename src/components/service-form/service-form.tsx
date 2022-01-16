@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 
-const ServiceFrom = () => {
+const ServiceForm = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -53,4 +53,4 @@ const ServiceFrom = () => {
   );
 };
 
-export default ServiceFrom;
+export default ServiceForm;

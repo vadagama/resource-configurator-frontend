@@ -12,9 +12,10 @@ export const API = {
   getResultTable() {
     return instance.get(`result-table`);
   },
-  follow(userId) {
-    return instance.post(`follow/${userId}`);
+  getServiceTypes() {
+    return instance.get(`types`);
   },
+
   unfollow(userId) {
     return instance.delete(`follow/${userId}`);
   },

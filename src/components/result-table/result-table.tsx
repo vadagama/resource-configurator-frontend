@@ -63,6 +63,8 @@ const ResultTable = () => {
     },
   ];
 
+  const isTableNotEmpty = true;
+
   return (
     <div
       style={{
@@ -74,22 +76,26 @@ const ResultTable = () => {
       <Title level={3} style={{ padding: '20px 0 20px 0' }}>
         Моя конфигурация
       </Title>
-
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-        style={{
-          padding: '0 0',
-        }}
-      />
-      <div style={{ padding: '30px 32px 30px 0', textAlign: 'right' }}>
-        <Space size={10}>
-          <Button type='primary'>Выгрузить в xls</Button>
-          <Button type='primary'>Сформировать заявку</Button>
-          <Button type='primary'>Сохранить</Button>
-        </Space>
-      </div>
+      {isTableNotEmpty && (
+        <div>
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+            style={{
+              padding: '0 0',
+            }}
+          />
+          <div style={{ padding: '30px 32px 30px 0', textAlign: 'right' }}>
+            <Space size={10}>
+              <Button type='primary'>Выгрузить в xls</Button>
+              <Button type='primary'>Сформировать заявку</Button>
+              <Button type='primary'>Сохранить</Button>
+            </Space>
+          </div>
+        </div>
+      )}
+      {!isTableNotEmpty && <div>Не выбрано ни одного сервиса</div>}
     </div>
   );
 };
