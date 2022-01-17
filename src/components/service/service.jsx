@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
-import ServiceFrom from '../service-form/service-form';
 
 const Service = (props) => {
   const handleClick = (event) => {
-    console.log(event.currentTarget.id);
-    return <ServiceFrom />;
+    const payload = {
+      isShowingForm: true,
+      currentFormServiceId: event.currentTarget.id,
+    };
+    props.toggleFormView(payload);
   };
 
   return (

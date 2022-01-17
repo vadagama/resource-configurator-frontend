@@ -9,6 +9,9 @@ export const API = {
   getServices() {
     return instance.get(`services`);
   },
+  getServicesFilteredByType(id) {
+    return instance.get(`services/?type=${id}`);
+  },
   getResultTable() {
     return instance.get(`result-table`);
   },

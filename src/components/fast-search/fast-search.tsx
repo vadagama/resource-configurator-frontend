@@ -9,6 +9,7 @@ const FastSearch = () => {
       allowClear
       enterButton='Search'
       size='large'
+      style={{ paddingBottom: 30 }}
     />
   );
 };
