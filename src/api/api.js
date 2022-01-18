@@ -6,6 +6,7 @@ const instance = axios.create({
 });
 
 export const API = {
+  //Services
   getServices() {
     return instance.get(`services`);
   },
@@ -19,23 +20,17 @@ export const API = {
     return instance.get(`types`);
   },
 
-  unfollow(userId) {
-    return instance.delete(`follow/${userId}`);
+  //My configuration
+  getConfig() {
+    return instance.get(`config`);
   },
-  setUserProfile(userId) {
-    return instance.get(`profile/${userId}`);
+  addItemToConfig(object) {
+    return instance.post(`config`, { object });
   },
-  getUserStatus(userId) {
-    return instance.get(`profile/status/${userId}`);
+  deleteItemFromConfig(itemId) {
+    return instance.post(`config/${itemId}`);
   },
-  updateUserStatus(status) {
-    console.log(status);
-    return instance.put(`profile/status`, { status: status });
-  },
-  login(email, password, rememberMe = false) {
-    return instance.post(`auth/login`, { email, password, rememberMe });
-  },
-  logout() {
-    return instance.delete(`auth/login/`);
+  changeItemFromConfig(object) {
+    return instance.put(`config/`, { object });
   },
 };

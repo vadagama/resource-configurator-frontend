@@ -3,13 +3,12 @@ import { Menu, Layout } from 'antd';
 const { Sider } = Layout;
 
 const LeftMenu = (props) => {
-  console.log(props);
   const handleClick = (event) => {
-    props.getServiceListFilteredByType(event.key);
-    if (event.key == 0) {
+    if (event.key === '0') {
       props.getServiceList();
-      props.setCurrentMenuItem(0);
+      props.setCurrentMenuItem(event.key);
     } else {
+      props.getServiceListFilteredByType(event.key);
       props.setCurrentMenuItem(event.key);
     }
   };

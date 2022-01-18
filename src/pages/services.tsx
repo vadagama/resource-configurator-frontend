@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import LeftMenuContainer from './../components/left-menu/left-menu-container';
 import FastSearch from './../components/fast-search/fast-search';
 import ServiceListContainer from './../components/service-list/service-list-container';
-import ResultTable from './../components/result-table/result-table';
+import ConfigContainer from '../components/config/config-container';
 
 const { Content } = Layout;
 
@@ -23,7 +23,7 @@ function Services(props: any) {
         </Content>
       </Layout>
       <Layout>
-        <ResultTable />
+        <ConfigContainer />
       </Layout>
     </>
   );

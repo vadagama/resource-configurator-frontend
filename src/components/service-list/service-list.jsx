@@ -8,8 +8,6 @@ import ServiceFormContainer from '../service-form/service-form-container';
 const { Title } = Typography;
 
 const ServiceList = (props) => {
-  console.log(props);
-
   let [isShowingForm, setFormStatus] = useState(props.isShowingForm);
   let [currentMenuItem, setFCurrentMenuItem] = useState(props.currentMenuItem);
 
@@ -46,7 +44,7 @@ const ServiceList = (props) => {
           {props.types
             .filter((type) => type.id == currentMenuItem)
             .map((filteredType) => (
-              <div>{filteredType.name}</div>
+              <div key={filteredType.id}>{filteredType.name}</div>
             ))}
         </Title>
         {!isShowingForm && (

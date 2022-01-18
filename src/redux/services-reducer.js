@@ -18,6 +18,15 @@ const initialState = {
       image: null,
     },
   ],
+  result_table: [
+    {
+      id: 1,
+      service_type: 1,
+      name: null,
+      title: null,
+      description: null,
+    },
+  ],
   isShowingForm: false,
   currentFormServiceId: null,
   isSearchVisible: true,
@@ -25,7 +34,7 @@ const initialState = {
 };
 
 const servicesReducer = (state = initialState, action) => {
-    let stateCopy
+  let stateCopy;
   switch (action.type) {
     case GET_SERVICE_LIST: {
       return { ...state, services: action.payload.data };

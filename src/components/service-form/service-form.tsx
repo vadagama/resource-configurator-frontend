@@ -51,7 +51,7 @@ const ServiceForm = (props: any) => {
         >
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-        
+
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type='ghost' danger htmlType='button' onClick={handleClick}>
             Вернуться назад
@@ -66,7 +66,7 @@ const ServiceForm = (props: any) => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type='primary' htmlType='submit' onClick={handleClick}>
-            Добавить к таблице
+            Добавить в конфигурацию
           </Button>
         </Form.Item>
       </Form>
