@@ -8,6 +8,7 @@ const Service = (props) => {
       isShowingForm: true,
       currentFormServiceId: event.currentTarget.id,
     };
+    debugger;
     props.toggleFormView(payload);
   };
 

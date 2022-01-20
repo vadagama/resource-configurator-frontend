@@ -4,7 +4,10 @@ import Config from './config';
 import {
   setConfigAC,
   deleteItemFromConfigAC,
+  clearConfigAC,
 } from '../../redux/config-reducer';
+
+import { saveConfig } from '../../redux/saved-configs-reducer';
 
 const mapStateToProps = (store) => {
   return {
@@ -16,6 +19,8 @@ const mapStateToProps = (store) => {
 const ConfigContainer = connect(mapStateToProps, {
   setConfigAC,
   deleteItemFromConfigAC,
+  saveConfig,
+  clearConfigAC,
 })(Config);
 
 export default ConfigContainer;

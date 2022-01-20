@@ -6,6 +6,7 @@ import {
   addConfigToSaved,
   deleteConfigFromSaved,
 } from './../../redux/saved-configs-reducer';
+import { addSavedItemToConfigAC } from './../../redux/config-reducer';
 
 const mapStateToProps = (store) => {
   return {
@@ -18,6 +19,7 @@ const SavedListContainer = connect(mapStateToProps, {
   getSaved,
   addConfigToSaved,
   deleteConfigFromSaved,
+  addSavedItemToConfigAC,
 })(SavedList);
 
 export default SavedListContainer;

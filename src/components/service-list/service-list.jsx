@@ -24,29 +24,24 @@ const ServiceList = (props) => {
     setFCurrentMenuItem(props.currentMenuItem);
   }, [props.currentMenuItem]);
 
-  let handlePrevClick = () => {
-    setFormStatus(false);
-    // toggleSearch(false);
-  };
-
   return (
     <>
       <div>
-        <Title level={4} style={{ paddingBottom: 10 }}>
-          {/* {isShowingForm && (
-            <Link to=''>
-              <ArrowLeftOutlined
-                onClick={handlePrevClick}
-                style={{ padding: '0 10px 0 0' }}
-              />
-            </Link>
-          )} */}
-          {props.types
-            .filter((type) => type.id == currentMenuItem)
-            .map((filteredType) => (
-              <div key={filteredType.id}>{filteredType.name}</div>
-            ))}
-        </Title>
+        {!isShowingForm && (
+          <Title level={4} style={{ paddingBottom: 10 }}>
+            {props.types
+              .filter((type) => type.id == currentMenuItem)
+              .map((filteredType) => (
+                <div key={filteredType.id}>{filteredType.name}</div>
+              ))}
+          </Title>
+        )}
+        {isShowingForm && (
+          <Title level={4} style={{ paddingBottom: 10 }}>
+            {props.currentFormServiceId}
+          </Title>
+        )}
+
         {!isShowingForm && (
           <div
             style={{

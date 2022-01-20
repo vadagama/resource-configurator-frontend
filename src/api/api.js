@@ -31,7 +31,10 @@ export const API = {
     return instance.delete(`config/${itemId}`);
   },
   changeItemFromConfig(object) {
-    return instance.put(`config/`, { object });
+    return instance.put(`config`, { object });
+  },
+  saveConfig(items) {
+    return instance.post(`saved_configs`, items);
   },
 
   //Saved configuration

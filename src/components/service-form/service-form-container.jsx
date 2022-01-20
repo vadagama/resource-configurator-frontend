@@ -11,6 +11,7 @@ const mapStateToProps = (store) => {
   return {
     isShowingForm: store.services.isShowingForm,
     currentFormServiceId: store.services.currentFormServiceId,
+    currentMenuItem: store.services.currentMenuItem,
   };
 };
 

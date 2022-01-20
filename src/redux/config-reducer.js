@@ -3,6 +3,8 @@ import { API } from './../api/api';
 const SET_CONFIG = 'SET_CONFIG';
 const ADD_ITEM_TO_CONFIG = 'ADD_ITEM_TO_CONFIG';
 const DELETE_ITEM_FROM_CONFIG = 'DELETE_ITEM_FROM_CONFIG';
+const CLEAR_CONFIG = 'CLEAR_CONFIG';
+const ADD_SAVED_ITEM_TO_CONFIG = 'ADD_SAVED_ITEM_TO_CONFIG';
 
 const initialState = {
   configuration: [],
@@ -36,6 +38,19 @@ const configReducer = (state = initialState, action) => {
       };
       return stateCopy;
     }
+    case CLEAR_CONFIG: {
+      return {
+        ...state,
+        ...initialState,
+      };
+    }
+    case ADD_SAVED_ITEM_TO_CONFIG: {
+      return {
+        ...state,
+        configuration: action.payload,
+        itemsCount: action.payload.length,
+      };
+    }
     default:
       return state;
   }
@@ -50,6 +65,12 @@ export const addItemToConfigAC = (payload) => ({
 export const deleteItemFromConfigAC = (itemId) => ({
   type: DELETE_ITEM_FROM_CONFIG,
   itemId,
+});
+
+export const clearConfigAC = () => ({ type: CLEAR_CONFIG });
+export const addSavedItemToConfigAC = (payload) => ({
+  type: ADD_SAVED_ITEM_TO_CONFIG,
+  payload,
 });
 
 // Thunks (в данной версии не используются)

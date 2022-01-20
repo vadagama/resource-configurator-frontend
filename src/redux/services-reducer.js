@@ -29,12 +29,12 @@ const initialState = {
   ],
   isShowingForm: false,
   currentFormServiceId: null,
+  currentFormServiceTitle: null,
   isSearchVisible: true,
   currentMenuItem: 1,
 };
 
 const servicesReducer = (state = initialState, action) => {
-  let stateCopy;
   switch (action.type) {
     case GET_SERVICE_LIST: {
       return { ...state, services: action.payload.data };
@@ -47,6 +47,8 @@ const servicesReducer = (state = initialState, action) => {
         ...state,
         isShowingForm: action.payload.isShowingForm,
         currentFormServiceId: action.payload.currentFormServiceId,
+        currentFormServiceTitle:
+          action.payload.currentFormServicecurrentFormServiceTitle,
       };
     }
     case SET_FORM_VIEW_STATUS: {

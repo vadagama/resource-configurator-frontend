@@ -23,8 +23,17 @@ const Config = (props) => {
     console.log('exportFile');
   };
 
-  let saveConfig = () => {
-    console.log('saveConfig');
+  let saveConfig = (payload) => {
+    let data = payload.filter((item) => item.id != payload.id);
+    const created = new Date();
+
+    data = {
+      items: payload,
+      created: created,
+    };
+
+    props.saveConfig(data);
+    props.clearConfigAC();
   };
 
   let createRequest = () => {
@@ -110,7 +119,10 @@ const Config = (props) => {
               <Button type='primary' onClick={createRequest}>
                 Сформировать заявку
               </Button>
-              <Button type='primary' onClick={saveConfig}>
+              <Button
+                type='primary'
+                onClick={() => saveConfig(props.configuration)}
+              >
                 Сохранить
               </Button>
             </Space>

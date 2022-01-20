@@ -9,7 +9,6 @@ import { Typography } from 'antd';
 const { Title } = Typography;
 
 const SavedList = (props) => {
-  console.log(props);
   useEffect(() => {
     props.getSaved();
   }, []);
@@ -22,13 +21,13 @@ const SavedList = (props) => {
     console.log('saveConfig');
   };
 
-  let createRequest = () => {
-    console.log('createRequest');
+  let addToConfig = (items) => {
+    console.log(items);
+    props.addSavedItemToConfigAC(items);
   };
 
   let deleteItem = (id) => {
     props.deleteConfigFromSaved(id);
-    props.getSaved();
   };
 
   const columns = [
@@ -106,7 +105,10 @@ const SavedList = (props) => {
                     >
                       Удалить
                     </Button>
-                    <Button type='primary' onClick={createRequest}>
+                    <Button
+                      type='primary'
+                      onClick={() => addToConfig(config.items)}
+                    >
                       Добавить в конфигурацию
                     </Button>
                   </Space>
