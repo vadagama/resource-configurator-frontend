@@ -25,12 +25,23 @@ export const API = {
     return instance.get(`config`);
   },
   addItemToConfig(object) {
-    return instance.post(`config`, { object });
+    return instance.post(`config`, object);
   },
   deleteItemFromConfig(itemId) {
-    return instance.post(`config/${itemId}`);
+    return instance.delete(`config/${itemId}`);
   },
   changeItemFromConfig(object) {
     return instance.put(`config/`, { object });
+  },
+
+  //Saved configuration
+  getSaved() {
+    return instance.get(`saved-configs`);
+  },
+  addConfigToSaved(object) {
+    return instance.post(`saved-configs`, object);
+  },
+  deleteConfigFromSavedAC(itemId) {
+    return instance.delete(`saved-configs/${itemId}`);
   },
 };

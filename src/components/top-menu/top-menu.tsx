@@ -14,7 +14,7 @@ const TopMenu = () => {
         <Link to='/services'>Сервисы и продукты</Link>
       </Menu.Item>
       <Menu.Item key='2'>
-        <Link to='/saved'>Сохраненные расчеты</Link>
+        <Link to='/saved'>Сохраненные конфигурации</Link>
       </Menu.Item>
       <Menu.Item key='3'>
         <Link to='/scenarios'>Типовые сценарии</Link>

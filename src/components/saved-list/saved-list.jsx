@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Typography } from 'antd';
+import { Card, Avatar, Header } from 'antd';
 import { Button } from 'antd';
 import { Space } from 'antd';
 import { Table } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
 
 const { Title } = Typography;
 
-const Config = (props) => {
-  console.log(props);
-  let [itemsCount, setItemCount] = useState(props.itemsCount);
-
-  useEffect(() => {
-    props.setConfigAC();
-  }, []);
-
-  useEffect(() => {
-    setItemCount(props.itemsCount);
-  }, []);
-
+const SavedList = (props) => {
   let exportFile = () => {
     console.log('exportFile');
   };
@@ -71,7 +61,6 @@ const Config = (props) => {
       ),
     },
   ];
-
   return (
     <div
       style={{
@@ -80,22 +69,14 @@ const Config = (props) => {
         margin: '26px 16px 46px 16px',
       }}
     >
-      {props.itemsCount > 0 ? (
-        <Title level={3} style={{ padding: '20px 0 20px 0' }}>
-          Моя конфигурация ({props.itemsCount})
-        </Title>
-      ) : (
-        <Title level={3} style={{ padding: '20px 0 20px 0' }}>
-          Моя конфигурация
-        </Title>
-      )}
+      <Title level={3}>Сохраненные конфигурации</Title>
       {props.itemsCount > 0 ? (
         <div>
           <Table
             columns={columns}
-            dataSource={props.configuration}
+            dataSource={props.saved}
             pagination={false}
-            key={props.configuration.id}
+            key={props.saved.id}
             style={{
               padding: '0 0',
             }}
@@ -103,10 +84,7 @@ const Config = (props) => {
           <div style={{ padding: '30px 32px 30px 0', textAlign: 'right' }}>
             <Space size={10}>
               <Button type='primary' onClick={exportFile}>
-                Выгрузить в XLS
-              </Button>
-              <Button type='primary' onClick={exportFile}>
-                Выгрузить в JSON
+                Выгрузить в xls
               </Button>
               <Button type='primary' onClick={createRequest}>
                 Сформировать заявку
@@ -126,4 +104,4 @@ const Config = (props) => {
   );
 };
 
-export default Config;
+export default SavedList;

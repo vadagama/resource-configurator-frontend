@@ -13,6 +13,7 @@ function Services(props: any) {
   useEffect(() => {
     setSearchVisible(props.isSearchVisible);
   }, [props.isSearchVisible]);
+
   return (
     <>
       <Layout style={{ padding: '20px 16px' }}>

@@ -4,9 +4,10 @@ import ServiceForm from './service-form';
 import {
   toggleFormView,
   setFormViewStatus,
-} from './../../redux/services-reducer';
+} from '../../redux/services-reducer';
+import { addItemToConfigAC, getConfig } from '../../redux/config-reducer';
 
-const mapStateToProps = (store: any) => {
+const mapStateToProps = (store) => {
   return {
     isShowingForm: store.services.isShowingForm,
     currentFormServiceId: store.services.currentFormServiceId,
@@ -16,6 +17,8 @@ const mapStateToProps = (store: any) => {
 const ServiceFormContainer = connect(mapStateToProps, {
   toggleFormView,
   setFormViewStatus,
+  addItemToConfigAC,
+  getConfig,
 })(ServiceForm);
 
 export default ServiceFormContainer;
