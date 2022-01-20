@@ -2,14 +2,22 @@ import { API } from './../api/api';
 
 const ADD_CONFIG_TO_SAVED = 'ADD_CONFIG_TO_SAVED';
 const DELETE_CONFIG_FROM_SAVED = 'DELETE_CONFIG_FROM_SAVED';
+const GET_SAVED = 'GET_SAVED';
 
 const initialState = {
-  configuration: [],
-  itemsCount: 0,
+  saved_configs: [],
+  savedItemsCount: 0,
 };
 
 const savedConfigReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_SAVED: {
+      return {
+        ...state,
+        saved_configs: action.payload.data,
+        savedItemsCount: action.payload.data.length,
+      };
+    }
     case ADD_CONFIG_TO_SAVED: {
       return {
         ...state,
@@ -17,23 +25,45 @@ const savedConfigReducer = (state = initialState, action) => {
         itemsCount: state.itemsCount,
       };
     }
-
+    case DELETE_CONFIG_FROM_SAVED: {
+      return {
+        ...state,
+        itemsCount: state.savedItemsCount,
+        saved_configs: state.saved_configs.filter(
+          (item) => item.id != action.item
+        ),
+      };
+    }
     default:
       return state;
   }
 };
 
 // Action creators
+
+const getSavedAC = (payload) => ({
+  type: GET_SAVED,
+  payload,
+});
+
 export const addConfigToSavedAC = (payload) => ({
   type: ADD_CONFIG_TO_SAVED,
   payload,
 });
-export const deleteConfigFromSavedAC = (itemId) => ({
+
+export const deleteConfigFromSavedAC = (item) => ({
   type: DELETE_CONFIG_FROM_SAVED,
-  itemId,
+  item,
 });
 
-// Thunks (в данной версии не используются)
+// Thunks
+export const getSaved = () => async (dispatch) => {
+  let payload = await API.getSaved();
+  if (payload) {
+    dispatch(getSavedAC(payload));
+  }
+};
+
 export const addConfigToSaved = (payload) => {
   return (dispatch) => {
     API.addConfigToSaved(payload).then((response) => {

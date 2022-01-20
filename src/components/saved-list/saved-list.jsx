@@ -9,6 +9,11 @@ import { Typography } from 'antd';
 const { Title } = Typography;
 
 const SavedList = (props) => {
+  console.log(props);
+  useEffect(() => {
+    props.getSaved();
+  }, []);
+
   let exportFile = () => {
     console.log('exportFile');
   };
@@ -21,9 +26,9 @@ const SavedList = (props) => {
     console.log('createRequest');
   };
 
-  let deleteItem = (event) => {
-    props.deleteItemFromConfigAC(event);
-    //props.getConfig();
+  let deleteItem = (id) => {
+    props.deleteConfigFromSaved(id);
+    props.getSaved();
   };
 
   const columns = [
@@ -44,62 +49,73 @@ const SavedList = (props) => {
       title: 'Описание ресурса',
       dataIndex: 'description',
     },
-    {
-      title: 'Action',
-      key: 'action',
-      id: 'id',
-      render: (record) => (
-        <Space size='middle'>
-          <Button
-            danger
-            key={record.id}
-            onClick={() => deleteItem(record.id)}
-            type='primary'
-            icon={<DeleteOutlined />}
-          />
-        </Space>
-      ),
-    },
   ];
   return (
-    <div
-      style={{
-        backgroundColor: '#fff',
-        padding: '0 24px',
-        margin: '26px 16px 46px 16px',
-      }}
-    >
-      <Title level={3}>Сохраненные конфигурации</Title>
-      {props.itemsCount > 0 ? (
-        <div>
-          <Table
-            columns={columns}
-            dataSource={props.saved}
-            pagination={false}
-            key={props.saved.id}
-            style={{
-              padding: '0 0',
-            }}
-          />
-          <div style={{ padding: '30px 32px 30px 0', textAlign: 'right' }}>
-            <Space size={10}>
-              <Button type='primary' onClick={exportFile}>
-                Выгрузить в xls
-              </Button>
-              <Button type='primary' onClick={createRequest}>
-                Сформировать заявку
-              </Button>
-              <Button type='primary' onClick={saveConfig}>
-                Сохранить
-              </Button>
-            </Space>
-          </div>
-        </div>
-      ) : (
-        <div style={{ padding: '0 0 30px 0' }}>
-          Добавьте хотя бы один сервис
-        </div>
-      )}
+    <div>
+      <Title
+        style={{
+          margin: '26px 16px 26px 16px',
+        }}
+        level={3}
+      >
+        Сохраненные конфигурации
+      </Title>
+      <div>
+        {props.saved_configs.map((config) => {
+          return (
+            <div
+              style={{
+                backgroundColor: '#fff',
+                padding: '0 24px',
+                margin: '26px 16px 46px 16px',
+              }}
+            >
+              <div>
+                <Title
+                  style={{
+                    padding: '16px 8px',
+                  }}
+                  level={4}
+                >
+                  {config.created}
+                </Title>
+                <Table
+                  size='small'
+                  columns={columns}
+                  dataSource={config.items}
+                  pagination={false}
+                  key={config.id}
+                  style={{
+                    padding: '0 0',
+                  }}
+                />
+                <div
+                  style={{ padding: '30px 32px 30px 0', textAlign: 'right' }}
+                >
+                  <Space size={10}>
+                    <Button type='primary' onClick={exportFile}>
+                      Выгрузить в XLS
+                    </Button>
+                    <Button type='primary' onClick={exportFile}>
+                      Выгрузить в JSON
+                    </Button>
+                    <Button
+                      type='primary'
+                      danger
+                      onClick={() => deleteItem(config.id)}
+                    >
+                      Удалить
+                    </Button>
+                    <Button type='primary' onClick={createRequest}>
+                      Добавить в конфигурацию
+                    </Button>
+                  </Space>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

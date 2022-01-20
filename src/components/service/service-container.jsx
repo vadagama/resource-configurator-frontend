@@ -5,8 +5,8 @@ import { toggleFormView } from './../../redux/services-reducer';
 
 const mapStateToProps = (store) => {
   return {
-    isShowingForm: store.services.isShowingForm,
-    currentFormServiceId: store.services.currentFormServiceId,
+    isShowingForm: store.saved_configs.isShowingForm,
+    currentFormServiceId: store.saved_configs.currentFormServiceId,
   };
 };
 

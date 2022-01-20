@@ -7,7 +7,7 @@ import savedConfigsReducer from './saved-configs-reducer';
 let reducers = combineReducers({
   services: servicesReducer,
   config: configReducer,
-  saved: savedConfigsReducer,
+  saved_configs: savedConfigsReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

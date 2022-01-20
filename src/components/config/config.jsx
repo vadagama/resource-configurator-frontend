@@ -33,7 +33,6 @@ const Config = (props) => {
 
   let deleteItem = (event) => {
     props.deleteItemFromConfigAC(event);
-    //props.getConfig();
   };
 
   const columns = [

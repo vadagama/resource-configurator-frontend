@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
-import SavedListContainer from '../components/saved-list/saved-list';
+import SavedListContainer from '../components/saved-list/saved-list-container';
 
 const { Content } = Layout;
 
