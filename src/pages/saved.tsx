@@ -7,7 +7,7 @@ const { Content } = Layout;
 function Saved() {
   return (
     <>
-      <Layout style={{ padding: '20px 16px' }}>
+      <Layout style={{ padding: '20px 16px 210px 16px' }}>
         <Content style={{ padding: '0 0 0 30px', minHeight: 500 }}>
           <SavedListContainer />
         </Content>
